@@ -1,0 +1,12 @@
+# $ jekyll new에서 제시한 정보
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Clean Blog에서 제시한 정보
+#_site
+#.sass-cache
+#node_modules
+#Gemfile.lock
+#*.gem
