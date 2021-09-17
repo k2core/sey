@@ -100,6 +100,7 @@ git이 관리할 필요없는 파일을 먼저 설정하는 것이 편하다.
 > `.gitignore` 작성 시 참조 사이트 <https://github.com/github/gitignore>
 
 <br>
+
 ### #. 그리고, **git 초기화**를 하자.
 
 ```
@@ -137,7 +138,7 @@ GitHub에서 프로젝트를 설정한다. 참조: [GitHub Pages 사용 가이�
 
 GitHub Pages에 올리기 위해서는 `gh-pages`라는 특정 브랜치명을 사용해야 한다.
 
-- (방법#1) 그냥 **git init**을 했다면 브랜치명을 변경해야 한다.
+- (방법#1) 그냥 **git init**을 했다면 브랜치명을 변경해야 한다:
 
   ```
   $ git init
@@ -145,14 +146,24 @@ GitHub Pages에 올리기 위해서는 `gh-pages`라는 특정 브랜치명을 �
   -m은 --move이며 rename이다.
   ```
 
-- (방법#2) 초기화부터 브랜치명으로 `gh-pages`를 사용한다.
+- (방법#2) 초기화부터 브랜치명으로 `gh-pages`를 사용한다:
 
   ```
   $ git init --initial-branch=gh-pages
   ```
 
-- (방법#3) **git init**해서 열심히 썼다면,
+- (방법#3) **git init**해서 열심히 쓰고 있었다면:\
+  (~~`checkout`~~ 대신 `switch` 사용,
+  🍭 참고: [git checkout 대신 switch 사용](../git/git-switch-instead-of-checkout.html))
+
   ```
+  (최신 버전) 'switch'를 사용하자!
+  $ git switch -c gh-pages
+  -c 옵션은 다음 두 줄의 명령어와 같다!
+    $ git branch gh-pages
+    $ git switch gh-pages
+
+  (구 버전)
   $ git checkout -b gh-pages
   -b 옵션은 다음 두 줄의 명령어와 같다!
     $ git branch gh-pages
@@ -160,6 +171,7 @@ GitHub Pages에 올리기 위해서는 `gh-pages`라는 특정 브랜치명을 �
   ```
 
 <br>
+
 ### #. 원격 저장소인 GitHub에 push 한다.
 
 위와 같이 `gh-pages` 브랜치명을 가진 프로젝트가 준비되었다면, 그 다음은 리모트를 설정하고 `push` 하자
@@ -172,6 +184,7 @@ $ git push -u origin gh-pages
 > `origin`은 리모트 즉 원격 저장소에 사용하는 관례적인 이름이다. 원하는 이름을 써도 된다.
 
 <br>
+
 ## 🥯 여러 로컬에서 블로그 관리하기
 
 ### #. 또 다른 로컬에서의 사용법(로컬 2대 이상 사용 시)
@@ -198,6 +211,7 @@ $ bundle install
 ```
 
 <br>
+
 ### #. 여러 로컬에서 블로그 기록하기
 
 다른 로컬에서의 변경 사항이 리모트에 반영되어 있을 수 있으니 먼저 받아온다.
@@ -211,3 +225,28 @@ $ git pull
 ```
 $ git push
 ```
+
+<br>
+
+### #. Two factor authentication
+
+위처럼 `$ git push`를 했는데 다음과 같은 오류가 발생했다.
+
+```
+$ git push
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/k2core/sey.git/'
+```
+
+**이중 인증(Two factor authentication)**을 해보자.
+
+github.com에 로그인하여, "Settings > Account security"에서 "Enable two-factor authentication" 버튼 클릭
+그리고 따라하면 된다.
+
+명령행에서 사용하려면,
+
+"Settings > Developer settings > Personal access tokens"
+키를 만들어서, 복사하여 명령행 창에서 패스워드 대신 사용하면 된다(붙여넣기).
+
+<https://lee-seul.github.io/other/git/2018/04/13/github-Two-factor-authentication.html>
