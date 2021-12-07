@@ -12,6 +12,10 @@
     <h3>1. 선언적 렌더링#1: 데이터와 DOM 연결</h3>
     <div id="app">{{ message }}</div>
 
+    <div>
+      <em>👉 개발자 도구에서, app.message = '화이팅 합시다~'</em>
+    </div>
+
     <script>
       var app = new Vue({
         el: "#app",
@@ -24,11 +28,15 @@
     <hr />
 
     <!-- ------------------------------------------- -->
-    <h3>2. 선언적 렌더링#2: 엘리먼트 속성(title)에 bind</h3>
+    <h3>2. 선언적 렌더링#2: 엘리먼트 속성(title)에 bind</h3>
     <div id="app-2">
       <span v-bind:title="message">
         내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
       </span>
+    </div>
+
+    <div>
+      <em>👉 개발자 도구에서, app2.message = 'New message!!'</em>
     </div>
 
     <script>
@@ -46,6 +54,10 @@
     <h3>3. 조건문</h3>
     <div id="app-3">
       <p v-if="seen">이제 나를 볼 수 있어요</p>
+    </div>
+
+    <div>
+      <em>👉 개발자 도구에서, app3.seen = false</em>
     </div>
 
     <script>
@@ -67,6 +79,10 @@
       </ol>
     </div>
 
+    <div>
+      <em>👉 개발자 도구에서, app4.todos.push({ text: 'New item' })</em>
+    </div>
+
     <script>
       var app4 = new Vue({
         el: "#app-4",
@@ -83,7 +99,7 @@
     <hr />
 
     <!-- ------------------------------------------- -->
-    <h3>5. 사용자 입력 핸들링: 이벤트 리스너</h3>
+    <h3>5. 사용자 입력 핸들링: 이벤트 리스너</h3>
     <div id="app-5">
       <p>{{ message }}</p>
       <button v-on:click="reverseMessage">메시지 뒤집기</button>
